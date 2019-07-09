@@ -4,7 +4,7 @@
 <br>本小程序代码是修改自丸子君的小独而来。
 ![image](https://github.com/mn3711698/dszmini/blob/master/dsz_man.png)
 <br>配套后台。后台基于python3的flask和posgresql
-下边打个广告，这个是我泰国正品代购小程序,修改自丸子君的另一个模板而来。
+<br>下边打个广告，这个是我泰国正品代购小程序,修改自丸子君的另一个模板而来。
 <br>
 ![image](https://github.com/mn3711698/dszmini/blob/master/janedao.jpg)
 <br>泰国代购小程序后台，也是基于python3的flask和posgresql
