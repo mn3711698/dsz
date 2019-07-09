@@ -1,2 +1,3 @@
 # dsz
-qrcode就是小程序二维码，这个还有配套后台。后台基于python3的flask和posgresql
+有配套后台。后台基于python3的flask和posgresql
+![image](https://github.com/mn3711698/dszmini/blob/master/qrcode.jpg)
