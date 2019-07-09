@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "ui-nav-bar": "../packages/touchui-wx-components/ui-nav-bar/dist/index",
+    "ui-tabs": "../packages/touchui-wx-components/ui-tabs/dist/index",
+    "ui-tab": "../packages/touchui-wx-components/ui-tab/dist/index",
+    "ui-popup": "../packages/touchui-wx-components/ui-popup/dist/index",
+    "ui-v-tabs": "../packages/touchui-wx-components/ui-v-tabs/dist/index",
+    "ui-v-tab": "../packages/touchui-wx-components/ui-v-tab/dist/index",
+    "ui-mask": "../packages/touchui-wx-components/ui-mask/dist/index"
+  },
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "black"
+}

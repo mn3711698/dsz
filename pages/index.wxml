@@ -1,0 +1,295 @@
+<import src="../wxParse/wxParse.wxml" />
+<view>
+  <view hidden="{{menushow}}">
+    <ui-nav-bar slot="nav-bar" custom-style="{{ {backgroundColor:'#fff'} }}" _pid="{{_pid}}">
+      <view class="ui-row" style="height:46px;">
+        <view data-show="{{ headtap }}" bindtap="openPopup" class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 10px;flex:0 0 110px;">
+          <view class="ui-col-content align-left valign-middle">
+            <view class="date-header">
+              <text>{{date}}</text>{{month}}.{{year}}
+              <span type="slide_down" size="9" color="#333" class="ui-icon icon-slide_down" style="color: #333;font-size: 9px;"></span>
+            </view>
+          </view>
+        </view>
+        <view class="ui-col ui-col-align-center align-center valign-middle" style="">
+          <view class="ui-col-content align-center valign-middle">
+            <view class="header-ui-tabs">
+              <ui-tabs width="200" probe="1" tab-style="{{tabStyle}}" auto-width="{{false}}" index="{{ current }}" bindchange="handleChange" active-tab-style="{{activeTabStyle2}}" _pid="{{_pid}}">
+                <!--ui-tab _pid="{{_pid}}">乐</ui-tab-->
+                <ui-tab _pid="{{_pid}}">文章</ui-tab>
+                <ui-tab _pid="{{_pid}}">公告</ui-tab>
+              </ui-tabs>
+            </view>
+          </view>
+        </view>
+        <view class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 110px;">
+          <view class="ui-col-content align-center valign-middle">
+          </view>
+        </view>
+      </view>
+    </ui-nav-bar>
+  </view>
+  <view style="height:{{NAV_HEIGHT}}px"></view>
+  <swiper style="height:{{WIN_HEIGHT-NAV_HEIGHT}}px" class="content" duration="400" current="{{ current }}" bindchange="handleContentChange">
+    <!--swiper-item>
+      <view class="ui-row" style="margin-bottom: 20px;margin-top: 10px;height:310px;">
+        <view class="ui-col ui-col-align-center align-center valign-middle" style="padding-left: 10px; padding-right: 10px;">
+          <view class="ui-col-content align-center valign-middle">
+            <view class="content-music">
+              <image class="{{muiscImgPlayer}}" src="{{rsongImg}}" />
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="music-box ui-row" style="margin-bottom: 50px;height:70px;">
+        <view class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 20px;">
+          <view class="ui-col-content align-left valign-middle">
+            <view class="music-title">{{dsongTit}}</view>
+            <view class="music-singer">{{dsongSin}}</view>
+          </view>
+        </view>
+        <view class="music-ui-col ui-col ui-col-align-right align-right valign-middle" wx:if="{{!musicPlay}}" bindtap="playerMusic" data-id="1" style="padding-right: 10px;flex:0 0 80px;">
+          <view class="ui-col-content align-right valign-middle">
+            <span type="playmusic" size="50" color="#333" class="ui-icon icon-playmusic" style="color: #333;font-size: 50px;"></span>
+          </view>
+        </view>
+        <view class="music-ui-col ui-col ui-col-align-right align-right valign-middle" wx:if="{{musicPlay}}" bindtap="playerMusic" data-id="2" style="padding-right: 10px;flex:0 0 80px;">
+          <view class="ui-col-content align-right valign-middle">
+            <span type="pausemusic" size="50" color="#333" class="ui-icon icon-pausemusic" style="color: #333;font-size: 50px;"></span>
+          </view>
+        </view>
+      </view>
+      <view class="share-ui-row ui-row" style="">
+        <view class="ui-col ui-col-align-right align-right valign-middle" style="padding-right: 35px;">
+          <view class="ui-col-content align-right valign-middle">
+            <view class="share-content-box">
+              <image wx:if="{{songFavSta == 0}}" src="../images/ic_love_normal.png" bindtap="getFavSongTap" data-id="{{newoneId}}" data-type="0" />
+              <image wx:if="{{songFavSta == 1}}" src="../images/ic_love_press.png" bindtap="delFavSongTap" data-id="{{newoneId}}" data-type="0" />
+              <view class="number">{{dsongFav}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 35px;">
+          <view class="ui-col-content align-left valign-middle">
+            <view class="share-content-box" bindtap="getShareSongTap" data-id="0">
+              <image src="../images/ic_share.png" />
+              <view class="number">{{dsongShr}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </swiper-item-->
+    <swiper-item>
+      <view class="content-topics">
+        <!--image src="{{darticleImg}}" mode="aspectFill" /-->
+        <view class="topics-title">{{dsentTit}}</view>
+        <!--view class="topice-user">{{darticleAur}}</view-->
+        <view class="topice-text">
+         <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+        </view>
+      </view>
+      <view class="share-ui-row ui-row" style="">
+        <view class="ui-col ui-col-align-right align-right valign-middle" style="padding-right: 10px;">
+          <view class="ui-col-content align-right valign-middle">
+            <view class="share-content-box">
+              <image wx:if="{{dartFavSta == 0}}" src="../images/ic_love_normal.png" bindtap="getFavSongTap" data-id="{{newoneId}}" />
+              <image wx:if="{{dartFavSta == 1}}" src="../images/ic_love_press.png" bindtap="delFavSongTap" data-id="{{newoneId}}" />
+              <view class="number">{{darticleFav}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="ui-col ui-col-align-right align-right valign-middle" style="padding-right: 8px;">
+          <view class="ui-col-content align-right valign-middle">
+            <view class="share-content-box">
+              <image src="../images/views.png"  />
+              <view class="number">{{darticleSee}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 10px;">
+          <view class="ui-col-content align-left valign-middle">
+            <view class="share-content-box" bindtap="getShareSongTap" data-id="{newoneId}}">
+              <image src="../images/ic_share.png" />
+              <view class="number">{{darticleShr}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="ui-row" style="margin-bottom: 50px;margin-top: 10px;height:400px;">
+        <view class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 40px;padding-right: 40px;">
+          <view class="ui-col-content align-left valign-middle">
+            <view class="content-sentence">
+              <view wx:if="{{darticleTit}}" class="sentence-book">《{{darticleTit}}》</view>
+
+              <view class="sentence-info">
+                <template is="wxParse" data="{{wxParseData:rticle.nodes}}"/>
+                
+                <!--text>{{dsentenc}}</text-->
+              </view>
+              
+              <!--view wx:if="{{dsentencAur}}" class="sentence-user">
+                <text class="a"></text>
+                <text class="b">{{dsentencAur}}</text>
+              </view-->
+            </view>
+          </view>
+        </view>
+      </view>
+      <!--view class="share-ui-row ui-row" style="">
+        <view class="ui-col ui-col-align-right align-right valign-middle" style="padding-right: 10px;">
+          <view class="ui-col-content align-right valign-middle">
+            <view class="share-content-box">
+              <image wx:if="{{dsenFavSta == 0}}" src="../images/ic_love_normal.png" bindtap="getFavSongTap" data-id="{{newoneId}}" data-type="1" />
+              <image wx:if="{{dsenFavSta == 1}}" src="../images/ic_love_press.png" bindtap="delFavSongTap" data-id="{{newoneId}}" data-type="1" />
+              <view class="number">{{dsentencFav}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 10px;">
+          <view class="ui-col-content align-left valign-middle">
+            <view class="share-content-box" bindtap="getShareSongTap" data-id="1">
+              <image src="../images/ic_share.png" />
+              <view class="number">{{dsentencShr}}</view>
+            </view>
+          </view>
+        </view>
+      </view-->
+    </swiper-item>
+    
+  </swiper>
+  
+  <ui-popup show="{{ show }}" top="{{ NAV_HEIGHT }}" mask-style="{{ maskStyle}}" position="left" _pid="{{_pid}}">
+    <view class="popup-content" style="width:100vw;height:{{WIN_HEIGHT-NAV_HEIGHT}}px;">
+      <view class="ui-row" style="">
+        <view class="ui-col ui-col-3" style="flex: 0 0 35%;">
+          <view class="ui-col-content">
+              <ui-v-tabs tab-style="{{poptabStyle}}" active-tab-style="{{popactiveTabStyle}}" class="time-tabs" index="{{ tabcurrent }}" data-key="current" bindchange="handleChangeTap" wx:if="{{dumonth}}" _pid="{{_pid}}">
+                <ui-v-tab wx:for-items="{{dumonth}}" wx:key="id" bindtap="getMonthTap" data-id="{{item[0]}}" data-year="{{item[2]}}" data-month="{{item[1]}}" _pid="{{_pid}}">{{item[2]}}年{{item[0]}}月
+                </ui-v-tab>
+              </ui-v-tabs>
+          </view>
+        </view>
+        <view class="ui-col" style="">
+          <view class="ui-col-content">
+            <scroll-view scroll-y style="height:{{WIN_HEIGHT-NAV_HEIGHT}}px" class="popup-scroll-view">
+              <view class="month-box">
+                <view class="month-list-box" wx:for="{{monthData}}" wx:key="id">
+                  <view class="month-list {{newoneId == item[4] ? 'active':''}}" bindtap="getArticleTap" data-id="{{item[4]}}" data-year="{{item[0]}}" data-date="{{item[3]}}" data-month="{{item[2]}}">
+                    <view class="month-year">{{item[2]}}.{{item[0]}}</view>
+                    <view class="month-day">{{item[3]}}</view>
+                    <view class="month-line"><text></text><text></text><text></text></view>
+                  </view>
+                </view>
+              </view>
+            </scroll-view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </ui-popup>
+  <ui-popup show="{{ menushow }}" top="0" height="100%" mask-style="{{ menuMaskStyle }}" position="right" _pid="{{_pid}}">
+    <view class="popup-menu-content" style="width:100vw;">
+      <view class="menu-header-box">
+        <image src="../images/logo_share.png" />
+        <view class="menu-header-name">
+          <view class="name">道术斋<text>v0.1.0</text></view>
+          <view class="info">弘扬传承传统文化，传播道与术的正能量。</view>
+        </view>
+      </view>
+      <view class="menu-list-box">
+        <image src="../images/share_ic_vx.png" />
+        <view class="name">我的浏览</view>
+        <image class="setting" src="../images/setting_ic_more.png" />
+        <navigator url="/pages/redlist" open-type="navigate" hover-class="none"></navigator>
+      </view>
+      <view class="menu-list-box">
+        <image src="../images/setting_ic_love.png" />
+        <view class="name">我的点赞</view>
+        <image class="setting" src="../images/setting_ic_more.png" />
+        <navigator url="/pages/favlist" open-type="navigate" hover-class="none"></navigator>
+      </view>
+      <!--view class="menu-list-box" bindtap="getCopyWechat">
+        <image src="../images/share_ic_vx.png" />
+        <view class="name">小程序端作者<text>Apollo&丸子君</text></view>
+        <image class="setting" src="../images/setting_ic_more.png" />
+      </view>
+      <view class="menu-list-box" bindtap="getCopyjdWechat">
+        <image src="../images/share_ic_vx.png" />
+        <view class="name">后台作者<text>简道</text></view>
+        <image class="setting" src="../images/setting_ic_more.png" />
+      </view-->
+      <view class="menu-more-box">
+        <view class="more-title">更多作品</view>
+        <view class="more-list-box">
+          <view class="more-list">
+            <image src="../images/weilai.png" />
+            <view>给未来寄封信</view>
+            <navigator target="miniProgram" open-type="navigate" app-id="wx25ea3f95faa1d6fb"></navigator>
+          </view>
+          <view class="more-list">
+            <image src="../images/xiaodu.png" />
+            <view>小独Lite</view>
+            <navigator target="miniProgram" open-type="navigate" app-id="wx03541f90871e5083"></navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+  </ui-popup>
+
+  <view class="menu-box" data-show="{{menuSta}}" bindtap="handleMenuMask">
+    <image wx:if="{{menuSta == true}}" src="../images/home_ic_nav.png" />
+    <image wx:if="{{menuSta != true}}" src="../images/home_ic_close.png" />
+  </view>
+  <canvas canvas-id="shareCanvas" style="width:400px;height:800px;opacity:0;position:fixed;left:-1000px;top:-1000px;"></canvas>
+
+  <ui-mask show="{{loginMask}}" effect="scale-out" custom-style="{{ customStyle }}" animation="" _pid="{{_pid}}">
+    <view class="login-content-box">
+      <view class="login-content">
+        <image src="../images/logo_share.png" />
+        <view class="login-name">道术斋</view>
+        <view class="login-text-box">
+          <view class="login-text-name">登录后发现更大的世界！</view>
+          <view class="login-text-info">
+            <text>·</text>浏览全部内容</view>
+          <view class="login-text-info">
+            <text>·</text>收藏喜欢的内容</view>
+          <view class="login-text-info">
+            <text>·</text>制作分享个性化的精美海报</view>
+        </view>
+        <button open-type="getUserInfo" bindgetuserinfo="userlogin">微信授权登录</button>
+      </view>
+    </view>
+  </ui-mask>
+
+  <ui-mask show="{{shareMask}}" effect="scale-out" custom-style="{{ customStyle }}" animation="" _pid="{{_pid}}">
+    <view class="share-mask-content-box">
+      <view class="share-title">选择分享方式</view>
+      <view class="share-list-box">
+        <image src="../images/ic_wechat_share.png" />
+        <view>分享给好友
+          <text>独乐乐，与人乐乐，孰乐？</text>
+        </view>
+        <button open-type="share" hover-class="none" data-id="{{shareNumber}}"></button>
+      </view>
+      <view class="share-list-box" bindtap="getShareHaibaoTap" data-id="{{shareNumber}}">
+        <image src="../images/ic_image.png" />
+        <view>生成个性海报
+          <text>与少乐乐，与众乐乐，孰乐？</text>
+        </view>
+      </view>
+    </view>
+  </ui-mask>
+  <ui-mask show="{{imageMask}}" hide-on-tap="{{false}}" effect="scale-out" custom-style="{{ customStyle }}" animation="" _pid="{{_pid}}">
+    <view class="image-mask-content-box">
+      <image src="{{shareImg}}" mode="aspectFill" bindtap="previewImage" data-img="{{shareImg}}" />
+      <view class="image-mask-box">
+        <view class="image-mask-close" bindtap="closeShareHaibaoTap">
+          <span type="close" size="20" color="#333" class="ui-icon icon-close" style="color: #333;font-size: 20px;"></span>
+        </view>
+        <view class="image-mask-button" bindtap="saveShareImgTap">保存海报图片</view>
+      </view>
+    </view>
+  </ui-mask>
+</view>

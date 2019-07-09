@@ -1,0 +1,22 @@
+{
+  "pages": [
+    "pages/index",
+    "pages/favlist",
+    "pages/redlist"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#efefef",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "道术斋",
+    "navigationBarTextStyle": "black"
+  },
+  "networkTimeout": {
+    "request": 10000
+  },
+  "theme": {
+    "theme-color": "#333333"
+  },
+  "sitemapLocation": "sitemap.json"
+}

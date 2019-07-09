@@ -1,0 +1,45 @@
+<view>
+  <ui-nav-bar slot="nav-bar" custom-style="{{ {borderBottom:'1px solid #f5f5f5',backgroundColor:'#fff'} }}" _pid="{{_pid}}">
+    <view class="ui-row" style="height:46px;">
+      <view bindtap="navigateBack" class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 60px;">
+        <view class="ui-col-content align-center valign-middle">
+          <span type="arrow-left" size="16" color="#333" class="ui-icon icon-arrow-left" style="color: #333;font-size: 16px;"></span>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-left  align-left  valign-middle" style="">
+        <view class="ui-col-content align-left  valign-middle">
+          <view>浏览记录</view>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 60px;">
+        <view class="ui-col-content align-center valign-middle"></view>
+      </view>
+    </view>
+  </ui-nav-bar>
+  <view style="height:{{NAV_HEIGHT}}"></view>
+  <view class="favlist-content">
+    <view class="favlist-box" wx:for="{{seeListTime}}" wx:key="id">
+      <view class="favlist-time">
+        <ui-divider padding="10" _pid="{{_pid}}">{{item}}</ui-divider>
+      </view>
+      <view class="favlist-list">
+        <block wx:for-items="{{seelist[item]}}" wx:key="id">
+          
+          <view  class="favlist-type" bindtap="getCenterTap" data-id="{{item.id}}" data-type="{{item.type}}">
+            <view class="icon">
+              <image src="../images/views.png" />
+            </view>
+            <view class="type-contents-box">
+              <view class="type-title"><text>{{item.time}}</text></view>
+              <view class="type-author">{{item.title}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view wx:if="{{seeNone}}" class="favlist-none">
+      <image src="../images/ic_empty.png" />
+      <text>没有浏览记录</text>
+    </view>
+  </view>
+</view>
