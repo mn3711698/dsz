@@ -7,6 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 var _system = require('./static/utils/system.js');
 
 var _system2 = _interopRequireDefault(_system);
+const vPush = require('./libs/vpush2.basic.js');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -14,6 +15,7 @@ exports.default = App({
   globalData: {
     sUrl:'https://dsz.janedao.cn/api?viewid=home'
   },
+  vPush: new vPush('https://push.yjyzj.cn/api/1?'),
   onLaunch: function onLaunch() {
     _system2.default.attachInfo();
     this.login();

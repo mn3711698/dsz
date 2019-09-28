@@ -67,12 +67,7 @@ exports.default = Page({
     muiscImgPlayer: '',
     dateobj: {}
   },
-  onShow:function onshow(e){
-    if (e == undefined){
-      e=''
-    }
-    this.onLoad(e)
-  },
+  
   onLoad: function onLoad(e) {
     var that = this;
     if (e.scene) {
@@ -150,10 +145,13 @@ exports.default = Page({
     });
     
   },
+  checkin: function (e) {
+    //console.log(e, '-------------')
+    app.vPush.addFormId(e);
+  },
   scrollRightTap: function scrollRightTap(e) {
     console.log(e);
   },
-  
   getArticleTap: function getArticleTap(e) {
     var that = this;
     var id = e.currentTarget.dataset.id;
@@ -175,7 +173,6 @@ exports.default = Page({
           id: e
         },
         success: function success(res) {
-          
           if (res.data.code == 0) {
             var time = res.data.data[0].fb_time;
             var timeArr = time.split('-');
@@ -218,12 +215,14 @@ exports.default = Page({
               darticleShr: res.data.data[0].shares,
               darticleSee: res.data.data[0].sees
             });
+            
             WxParse.wxParse('article', 'html', res.data.data[0].contents, that, 5);
             WxParse.wxParse('rticle', 'html', res.data.data[0].content, that, 5);
           }
         }
       });
     } else {
+      
       wx.request({
         
         url: app.globalData.sUrl+'&part=get_newone',

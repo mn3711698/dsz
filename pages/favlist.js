@@ -32,6 +32,10 @@ exports.default = Page({
       }
     });
   },
+  checkin: function (e) {
+    //console.log(e, '-------------')
+    app.vPush.addFormId(e);
+  },
   getCenterTap: function getCenterTap(e) {
     var id = e.currentTarget.dataset.id;
    

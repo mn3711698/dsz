@@ -26,13 +26,17 @@
         <block wx:for-items="{{favlist[item]}}" wx:key="id">
           
           <view  class="favlist-type" bindtap="getCenterTap" data-id="{{item.id}}" >
-            <view class="icon">
-              <image src="../images/ic_love_press.png" />
-            </view>
-            <view class="type-contents-box">
-              <view class="type-title"><text>{{item.time}}</text></view>
-              <view class="type-author">{{item.title}}</view>
-            </view>
+            <form report-submit bindsubmit='checkin' style="width:100%;">
+              <button form-type='submit' style="" class="button-type">
+                <view class="icon">
+                  <image src="../images/ic_love_press.png" />
+                </view>
+                <view class="type-contents-box">
+                  <view class="type-title"><text>{{item.time}}</text></view>
+                  <view class="type-author">{{item.title}}</view>
+                </view>
+              </button>
+            </form>
           </view>
         </block>
       </view>

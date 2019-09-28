@@ -6,7 +6,8 @@
     "ui-popup": "../packages/touchui-wx-components/ui-popup/dist/index",
     "ui-v-tabs": "../packages/touchui-wx-components/ui-v-tabs/dist/index",
     "ui-v-tab": "../packages/touchui-wx-components/ui-v-tab/dist/index",
-    "ui-mask": "../packages/touchui-wx-components/ui-mask/dist/index"
+    "ui-mask": "../packages/touchui-wx-components/ui-mask/dist/index",
+    "vpush-checkin": "/libs/components/checkin"
   },
   "navigationStyle": "custom",
   "navigationBarTextStyle": "black"

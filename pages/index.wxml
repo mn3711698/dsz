@@ -5,10 +5,14 @@
       <view class="ui-row" style="height:46px;">
         <view data-show="{{ headtap }}" bindtap="openPopup" class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 10px;flex:0 0 110px;">
           <view class="ui-col-content align-left valign-middle">
-            <view class="date-header">
-              <text>{{date}}</text>{{month}}.{{year}}
-              <span type="slide_down" size="9" color="#333" class="ui-icon icon-slide_down" style="color: #333;font-size: 9px;"></span>
-            </view>
+            <form report-submit bindsubmit='checkin' style="width:100%;">
+                <button form-type='submit' >
+                  <view class="date-header">
+                    <text>{{date}}</text>{{month}}.{{year}}
+                    <span type="slide_down" size="9" color="#333" class="ui-icon icon-slide_down" style="color: #333;font-size: 9px;"></span>
+                  </view>
+              </button>
+            </form>
           </view>
         </view>
         <view class="ui-col ui-col-align-center align-center valign-middle" style="">
@@ -166,7 +170,12 @@
         <view class="ui-col ui-col-3" style="flex: 0 0 35%;">
           <view class="ui-col-content">
               <ui-v-tabs tab-style="{{poptabStyle}}" active-tab-style="{{popactiveTabStyle}}" class="time-tabs" index="{{ tabcurrent }}" data-key="current" bindchange="handleChangeTap" wx:if="{{dumonth}}" _pid="{{_pid}}">
-                <ui-v-tab wx:for-items="{{dumonth}}" wx:key="id" bindtap="getMonthTap" data-id="{{item[0]}}" data-year="{{item[2]}}" data-month="{{item[1]}}" _pid="{{_pid}}">{{item[2]}}年{{item[0]}}月
+                <ui-v-tab wx:for-items="{{dumonth}}" wx:key="id" bindtap="getMonthTap" data-id="{{item[0]}}" data-year="{{item[2]}}" data-month="{{item[1]}}" _pid="{{_pid}}">
+                  <form report-submit bindsubmit='checkin' style="width:100%;">
+                    <button form-type='submit' style="margin-left: 50rpx;">
+                    {{item[2]}}年{{item[0]}}月
+                    </button>
+                  </form>
                 </ui-v-tab>
               </ui-v-tabs>
           </view>
@@ -177,9 +186,13 @@
               <view class="month-box">
                 <view class="month-list-box" wx:for="{{monthData}}" wx:key="id">
                   <view class="month-list {{newoneId == item[4] ? 'active':''}}" bindtap="getArticleTap" data-id="{{item[4]}}" data-year="{{item[0]}}" data-date="{{item[3]}}" data-month="{{item[2]}}">
-                    <view class="month-year">{{item[2]}}.{{item[0]}}</view>
-                    <view class="month-day">{{item[3]}}</view>
-                    <view class="month-line"><text></text><text></text><text></text></view>
+                    <form report-submit bindsubmit='checkin' style="width:100%;">
+                      <button form-type='submit' style="width:100%;">
+                        <view class="month-year">{{item[2]}}.{{item[0]}}</view>
+                        <view class="month-day">{{item[3]}}</view>
+                        <view class="month-line"><text>{{item[5]}}</text></view>
+                      </button>
+                    </form>
                   </view>
                 </view>
               </view>
@@ -220,7 +233,7 @@
         <view class="name">后台作者<text>简道</text></view>
         <image class="setting" src="../images/setting_ic_more.png" />
       </view-->
-      <view class="menu-more-box">
+      <!--view class="menu-more-box">
         <view class="more-title">更多作品</view>
         <view class="more-list-box">
           <view class="more-list">
@@ -234,13 +247,17 @@
             <navigator target="miniProgram" open-type="navigate" app-id="wx03541f90871e5083"></navigator>
           </view>
         </view>
-      </view>
+      </view-->
     </view>
   </ui-popup>
 
   <view class="menu-box" data-show="{{menuSta}}" bindtap="handleMenuMask">
-    <image wx:if="{{menuSta == true}}" src="../images/home_ic_nav.png" />
-    <image wx:if="{{menuSta != true}}" src="../images/home_ic_close.png" />
+   <form report-submit bindsubmit='checkin'>
+      <button form-type='submit'>
+        <image wx:if="{{menuSta == true}}" src="../images/home_ic_nav.png" />
+        <image wx:if="{{menuSta != true}}" src="../images/home_ic_close.png" />
+      </button>
+    </form>
   </view>
   <canvas canvas-id="shareCanvas" style="width:400px;height:800px;opacity:0;position:fixed;left:-1000px;top:-1000px;"></canvas>
 

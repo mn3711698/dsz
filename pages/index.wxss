@@ -336,7 +336,13 @@ swiper-item {
 .popup-scroll-view .month-box .month-list-box .active {
   border: 2rpx solid #333;
 }
-.popup-scroll-view .month-box .month-list-box .month-list {
+
+.popup-scroll-view .month-box .month-list-box button{
+  background-color: #fff;
+  width: 92%;
+  height: 99%;
+}
+.popup-scroll-view .month-box .month-list-box .month-list{
   background-color: #fff;
   width: 92%;
   height: 100%;
@@ -353,7 +359,7 @@ swiper-item {
   font-size: 80rpx;
   font-weight: lighter;
 }
-.popup-scroll-view .month-box .month-list-box .month-list .month-line {
+.popup-scroll-view .month-box .month-list-box .month-list  .month-line {
   width: 100%;
   height: 2rpx;
   display: flex;
@@ -361,11 +367,9 @@ swiper-item {
   justify-content: center;
 }
 .popup-scroll-view .month-box .month-list-box .month-list .month-line text {
-  width: 50rpx;
+  width: 100%;
   height: 2rpx;
-  background-color: #bfbfbf;
-  margin-left: 10rpx;
-  margin-top: 10rpx;
+  font-size: 25rpx;
 }
 .share-ui-row {
   width: 80%;
@@ -425,7 +429,7 @@ swiper-item {
 .menu-box {
   position: fixed;
   bottom: 20rpx;
-  right: 20rpx;
+  right: 1rpx;
   width: 80rpx;
   height: 80rpx;
   background-color: #fff;
