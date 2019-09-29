@@ -5,12 +5,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 var WxParse = require('../wxParse/wxParse.js');
 var _utils = require('../static/utils/utils.js');
-
 var _utils2 = _interopRequireDefault(_utils);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 var app = getApp();
+
 exports.default = Page({
   data: {
     NAV_HEIGHT: wx.STATUS_BAR_HEIGHT + wx.DEFAULT_HEADER_HEIGHT,
@@ -99,15 +97,7 @@ exports.default = Page({
         that.peaceread();
       }
     }
-    
-    var token = wx.getStorageSync('__appUserInfo').token;
-    if (!token) {
-      setTimeout(function () {
-        if (app.globalData.userinfo == 1e4) {
-          that.setData({ loginMask: true });
-        }
-      }, 1000);
-    };
+
     wx.getSystemInfo({
       success: function success(res) {
         that.setData({ WIN_HEIGHT: res.windowHeight });
@@ -144,19 +134,52 @@ exports.default = Page({
       }
     });
     
+    
   },
   checkin: function (e) {
-    //console.log(e, '-------------')
     app.vPush.addFormId(e);
   },
   scrollRightTap: function scrollRightTap(e) {
     console.log(e);
   },
+  gofav: function gofav() {
+    var that = this;
+    var token = wx.getStorageSync('__appUserInfo').token;
+    if (!token) {
+      setTimeout(function () {
+        if (app.globalData.userinfo == 10000) {
+          that.setData({ loginMask: true });
+        }
+      }, 1000);
+      return
+    }
+
+    wx.navigateTo({
+      url: "/pages/favlist"
+    });
+    //console.log('fav0000000000');
+  },
+  gosee: function gosee() {
+    var that = this;
+    var token = wx.getStorageSync('__appUserInfo').token;
+    if (!token) {
+      setTimeout(function () {
+        if (app.globalData.userinfo == 10000) {
+          that.setData({ loginMask: true });
+        }
+      }, 1000);
+      return
+    }
+
+    wx.navigateTo({
+      url: "/pages/redlist"
+    });
+    //console.log('fav0000000000');
+  },
   getArticleTap: function getArticleTap(e) {
     var that = this;
     var id = e.currentTarget.dataset.id;
     that.peaceread(id);
-   
     that.setData({
       show: false,
       headtap: true,
@@ -195,22 +218,8 @@ exports.default = Page({
               month: montArr[timeArr[1]],
               year: timeArr[0],
               newoneId: res.data.data[0].id,
-              //rsongImg: res.data.data[0].pic.replace(/http:/g, 'https:'),
-              //dsongImg: res.data.data[0].link,
-              //dsongTit: res.data.data[0].m_name,
-              //dsongSin: res.data.data[0].m_author,
-              //dsongFav: res.data.data[0].mfav,
-              //dsongShr: res.data.data[0].m_share,
               dsentTit: res.data.data[0].title,
-              //dsentenc: res.data.data[0].contents,
-              //darticle: res.data.data[0].w_contents,
-              //dsentencAur: res.data.data[0].j_author,
-              //dsentencFav: res.data.data[0].favs,
-              //dsentencShr: res.data.data[0].shares,
-              //dsentencSee: res.data.data[0].sees,
-              //darticleTit: res.data.data[0].ntitle,
               darticleAur: 'w_author',//res.data.data[0].w_author,
-              //darticleImg: res.data.data[0].pic_w.replace(/http:/g, 'https:'),
               darticleFav: res.data.data[0].favs,
               darticleShr: res.data.data[0].shares,
               darticleSee: res.data.data[0].sees
@@ -224,10 +233,8 @@ exports.default = Page({
     } else {
       
       wx.request({
-        
         url: app.globalData.sUrl+'&part=get_newone',
         success: function success(res) {
-          
           if (res.data.code == 0) {
             var time = res.data.data[0].fb_time;
             var timeArr = time.split('-');
@@ -251,22 +258,8 @@ exports.default = Page({
               month: montArr[timeArr[1]],
               year: timeArr[0],
               newoneId: res.data.data[0].id,
-              //rsongImg: res.data.data[0].pic.replace(/http:/g, 'https:'),
-              //dsongImg: res.data.data[0].link,
-              //dsongTit: res.data.data[0].m_name,
-              //dsongSin: res.data.data[0].m_author,
-              //dsongFav: res.data.data[0].mfav,
-              //dsongShr: res.data.data[0].m_share,
               dsentTit: res.data.data[0].title,
-              //dsentenc: res.data.data[0].contents,
-              //darticle: res.data.data[0].w_contents,
-              //dsentencAur: res.data.data[0].j_author,
-              //dsentencFav: res.data.data[0].favs,
-              //dsentencShr: res.data.data[0].shares,
-              //dsentencSee: res.data.data[0].sees,
-              //darticleTit: res.data.data[0].ntitle,
               darticleAur: 'w_author',//res.data.data[0].w_author,
-              //darticleImg: res.data.data[0].pic_w.replace(/http:/g, 'https:'),
               darticleFav: res.data.data[0].favs,
               darticleShr: res.data.data[0].shares,
               darticleSee: res.data.data[0].sees
@@ -286,10 +279,14 @@ exports.default = Page({
     //that.getSeeStar();
   },
   getFavStar: function getFavStar() {
+   
     var that = this;
-    
-    var id = that.data.newoneId;
     var token = wx.getStorageSync('__appUserInfo').token;
+    if (!token) {
+      return
+    }
+
+    var id = that.data.newoneId;
     wx.request({
      
       url: app.globalData.sUrl+'&part=fav_wzstatus',
@@ -311,9 +308,14 @@ exports.default = Page({
     });
   },
   getSeeStar: function getSeeStar() {
+   
     var that = this;
-    var id = that.data.newoneId;
     var token = wx.getStorageSync('__appUserInfo').token;
+    if (!token) {
+      return
+    }
+
+    var id = that.data.newoneId;
     wx.request({
       url: app.globalData.sUrl+'&part=wz_see',
       data: {
@@ -360,21 +362,6 @@ exports.default = Page({
       shareMask: true,
       shareNumber: shid
     });
-    /*if (shid == 0) {
-      that.setData({
-        shareMask: true,
-        shareNumber: 0
-      });
-    }
-    if (shid == 1) {
-      that.setData({
-        shareMask: true,
-        shareNumber: 1
-      });
-    }*/
-    
-      
-    
   },
   closeShareHaibaoTap: function closeShareHaibaoTap() {
     this.setData({
@@ -385,11 +372,8 @@ exports.default = Page({
     var that = this;
     var tid = that.data.newoneId;
     var shre = e.currentTarget.dataset.id;
-    
-    
       //生成文章海报图片
       wx.request({
-       
         url: app.globalData.sUrl+'&part=wz_share',
         data: {
           id: tid,
@@ -406,7 +390,6 @@ exports.default = Page({
       });
       wx.showLoading({ title: '\u751F\u6210\u56FE\u7247\u4E2D', mask: true });
       wx.request({
-        
         url: app.globalData.sUrl+'&part=get_qrcode',
         data: {
           scene: 'tid=' + tid + ',type=' + 0,
@@ -559,8 +542,6 @@ exports.default = Page({
     var tid = that.data.newoneId;
     if (res.from === 'button') {
       var id = res.target.dataset.id;
-      
-      
         var darticleTit = that.data.darticleTit;
         var darticleAur = that.data.darticleAur;
         var darticleImg = that.data.darticleImg;
@@ -595,10 +576,6 @@ exports.default = Page({
   },
   openPopup: function openPopup(e) {
     var that = this;
-    if (app.globalData.userinfo == 1e4) {
-      that.setData({ loginMask: true });
-      return;
-    }
     var show = e.currentTarget.dataset.show;
     if (show == true) {
       this.setData({
@@ -614,6 +591,7 @@ exports.default = Page({
   },
   handleMenuMask: function handleMenuMask(e) {
     var that = this;
+    
     var show = e.currentTarget.dataset.show;
     if (show == true) {
       that.setData({
@@ -690,7 +668,7 @@ exports.default = Page({
           success: function success(res) {
             if (res.data.code != 0) {
               wx.showConfirm({
-                content: '\u9700\u8981\u60A8\u7684\u6388\u6743\uFF0C\u624D\u80FD\u6B63\u5E38\u4F7F\u7528\u54E6\uFF5E',
+                content: res.data.msg,
                 showCancel: false,
                 confirmColor: '#ffd305',
                 confirmText: '\u91CD\u65B0\u6388\u6743',
@@ -699,9 +677,9 @@ exports.default = Page({
               return;
             } else {
               that.setData({ showMask: false });
-              app.login();
+              app.get_token();
               wx.showToast({ title: '\u5FAE\u4FE1\u6388\u6743\u6210\u529F', icon: 'none' });
-              app.globalData.userinfo = 0;
+              //app.globalData.userinfo = 0;
             }
           }
         });
@@ -711,21 +689,24 @@ exports.default = Page({
   getFavSongTap: function getFavSongTap(e) {
     var that = this;
     var tpid = e.currentTarget.dataset.id;
-    
-    if (app.globalData.userinfo == 1e4) {
-      that.setData({ loginMask: true });
-      return;
-    }
+
     var token = wx.getStorageSync('__appUserInfo').token;
+    if (!token) {
+      setTimeout(function () {
+        if (app.globalData.userinfo == 10000) {
+          that.setData({ loginMask: true });
+        }
+      }, 1000);
+      return
+    };
+    //var token = wx.getStorageSync('__appUserInfo').token;
     wx.request({
-      
       url: app.globalData.sUrl+'&part=fav_wzadd',
       data: {
         id: tpid,
         token: token
       },
       success: function success(res) {
-        
         if (res.data.code == 0) {
             var darticleFav = that.data.darticleFav + 1;
             that.setData({
@@ -737,19 +718,17 @@ exports.default = Page({
     });
   },
   delFavSongTap: function delFavSongTap(e) {
+    
     var that = this;
     var tpid = e.currentTarget.dataset.id;
-    
     var token = wx.getStorageSync('__appUserInfo').token;
     wx.request({
-      
       url: app.globalData.sUrl+'&part=fav_wzdel',
       data: {
         id: tpid,
         token: token
       },
       success: function success(res) {
-        
         if (res.data.code == 0) {
             var darticleFav = that.data.darticleFav - 1;
             that.setData({

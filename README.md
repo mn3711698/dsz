@@ -9,5 +9,3 @@
 ![image](https://github.com/mn3711698/dszmini/blob/master/janedao.jpg)
 <br>泰国代购小程序后台，也是基于python3的flask和posgresql
 ![image](https://github.com/mn3711698/dszmini/blob/master/janedao_man.png)
-<br>
-期待一起交流python3的小程序相关接口，加我QQ：173782910（请注明：github交流）

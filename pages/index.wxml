@@ -35,70 +35,22 @@
   </view>
   <view style="height:{{NAV_HEIGHT}}px"></view>
   <swiper style="height:{{WIN_HEIGHT-NAV_HEIGHT}}px" class="content" duration="400" current="{{ current }}" bindchange="handleContentChange">
-    <!--swiper-item>
-      <view class="ui-row" style="margin-bottom: 20px;margin-top: 10px;height:310px;">
-        <view class="ui-col ui-col-align-center align-center valign-middle" style="padding-left: 10px; padding-right: 10px;">
-          <view class="ui-col-content align-center valign-middle">
-            <view class="content-music">
-              <image class="{{muiscImgPlayer}}" src="{{rsongImg}}" />
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class="music-box ui-row" style="margin-bottom: 50px;height:70px;">
-        <view class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 20px;">
-          <view class="ui-col-content align-left valign-middle">
-            <view class="music-title">{{dsongTit}}</view>
-            <view class="music-singer">{{dsongSin}}</view>
-          </view>
-        </view>
-        <view class="music-ui-col ui-col ui-col-align-right align-right valign-middle" wx:if="{{!musicPlay}}" bindtap="playerMusic" data-id="1" style="padding-right: 10px;flex:0 0 80px;">
-          <view class="ui-col-content align-right valign-middle">
-            <span type="playmusic" size="50" color="#333" class="ui-icon icon-playmusic" style="color: #333;font-size: 50px;"></span>
-          </view>
-        </view>
-        <view class="music-ui-col ui-col ui-col-align-right align-right valign-middle" wx:if="{{musicPlay}}" bindtap="playerMusic" data-id="2" style="padding-right: 10px;flex:0 0 80px;">
-          <view class="ui-col-content align-right valign-middle">
-            <span type="pausemusic" size="50" color="#333" class="ui-icon icon-pausemusic" style="color: #333;font-size: 50px;"></span>
-          </view>
-        </view>
-      </view>
-      <view class="share-ui-row ui-row" style="">
-        <view class="ui-col ui-col-align-right align-right valign-middle" style="padding-right: 35px;">
-          <view class="ui-col-content align-right valign-middle">
-            <view class="share-content-box">
-              <image wx:if="{{songFavSta == 0}}" src="../images/ic_love_normal.png" bindtap="getFavSongTap" data-id="{{newoneId}}" data-type="0" />
-              <image wx:if="{{songFavSta == 1}}" src="../images/ic_love_press.png" bindtap="delFavSongTap" data-id="{{newoneId}}" data-type="0" />
-              <view class="number">{{dsongFav}}</view>
-            </view>
-          </view>
-        </view>
-        <view class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 35px;">
-          <view class="ui-col-content align-left valign-middle">
-            <view class="share-content-box" bindtap="getShareSongTap" data-id="0">
-              <image src="../images/ic_share.png" />
-              <view class="number">{{dsongShr}}</view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </swiper-item-->
+
     <swiper-item>
       <view class="content-topics">
-        <!--image src="{{darticleImg}}" mode="aspectFill" /-->
         <view class="topics-title">{{dsentTit}}</view>
-        <!--view class="topice-user">{{darticleAur}}</view-->
         <view class="topice-text">
          <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
         </view>
       </view>
       <view class="share-ui-row ui-row" style="">
+        
         <view class="ui-col ui-col-align-right align-right valign-middle" style="padding-right: 10px;">
           <view class="ui-col-content align-right valign-middle">
             <view class="share-content-box">
               <image wx:if="{{dartFavSta == 0}}" src="../images/ic_love_normal.png" bindtap="getFavSongTap" data-id="{{newoneId}}" />
               <image wx:if="{{dartFavSta == 1}}" src="../images/ic_love_press.png" bindtap="delFavSongTap" data-id="{{newoneId}}" />
-              <view class="number">{{darticleFav}}</view>
+              <view class="number" form-type='submit'>{{darticleFav}}</view>        
             </view>
           </view>
         </view>
@@ -129,37 +81,14 @@
 
               <view class="sentence-info">
                 <template is="wxParse" data="{{wxParseData:rticle.nodes}}"/>
-                
-                <!--text>{{dsentenc}}</text-->
               </view>
               
-              <!--view wx:if="{{dsentencAur}}" class="sentence-user">
-                <text class="a"></text>
-                <text class="b">{{dsentencAur}}</text>
-              </view-->
+
             </view>
           </view>
         </view>
       </view>
-      <!--view class="share-ui-row ui-row" style="">
-        <view class="ui-col ui-col-align-right align-right valign-middle" style="padding-right: 10px;">
-          <view class="ui-col-content align-right valign-middle">
-            <view class="share-content-box">
-              <image wx:if="{{dsenFavSta == 0}}" src="../images/ic_love_normal.png" bindtap="getFavSongTap" data-id="{{newoneId}}" data-type="1" />
-              <image wx:if="{{dsenFavSta == 1}}" src="../images/ic_love_press.png" bindtap="delFavSongTap" data-id="{{newoneId}}" data-type="1" />
-              <view class="number">{{dsentencFav}}</view>
-            </view>
-          </view>
-        </view>
-        <view class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 10px;">
-          <view class="ui-col-content align-left valign-middle">
-            <view class="share-content-box" bindtap="getShareSongTap" data-id="1">
-              <image src="../images/ic_share.png" />
-              <view class="number">{{dsentencShr}}</view>
-            </view>
-          </view>
-        </view>
-      </view-->
+
     </swiper-item>
     
   </swiper>
@@ -211,17 +140,25 @@
           <view class="info">弘扬传承传统文化，传播道与术的正能量。</view>
         </view>
       </view>
-      <view class="menu-list-box">
-        <image src="../images/share_ic_vx.png" />
-        <view class="name">我的浏览</view>
-        <image class="setting" src="../images/setting_ic_more.png" />
-        <navigator url="/pages/redlist" open-type="navigate" hover-class="none"></navigator>
+      <view class="menu-list-box" bindtap="gosee">
+        <form report-submit bindsubmit='checkin' style="width:100%;">
+          <button form-type='submit' style="width:100%;">
+            <image src="../images/share_ic_vx.png" />
+            <view class="name">我的浏览</view>
+            <image class="setting" src="../images/setting_ic_more.png" />
+          </button>
+        </form>
+        <!--navigator url="/pages/redlist" open-type="navigate" hover-class="none"></navigator-->
       </view>
-      <view class="menu-list-box">
-        <image src="../images/setting_ic_love.png" />
-        <view class="name">我的点赞</view>
-        <image class="setting" src="../images/setting_ic_more.png" />
-        <navigator url="/pages/favlist" open-type="navigate" hover-class="none"></navigator>
+      <view class="menu-list-box" bindtap="gofav">
+        <form report-submit bindsubmit='checkin' style="width:100%;">
+          <button form-type='submit' style="width:100%;">
+          <image src="../images/setting_ic_love.png" />
+          <view class="name">我的点赞</view>
+          <image class="setting" src="../images/setting_ic_more.png" />
+          </button>
+        </form>
+        <!--navigator url="/pages/favlist" open-type="navigate" hover-class="none"></navigator-->
       </view>
       <!--view class="menu-list-box" bindtap="getCopyWechat">
         <image src="../images/share_ic_vx.png" />

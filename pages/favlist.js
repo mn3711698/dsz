@@ -7,7 +7,8 @@ var app = getApp();
 exports.default = Page({
   data: {
     NAV_HEIGHT: wx.STATUS_BAR_HEIGHT + wx.DEFAULT_HEADER_HEIGHT + 'px',
-    favNone: false
+    favNone: false,
+    loginMask: false
   },
   onLoad: function onLoad() {
     var that = this;

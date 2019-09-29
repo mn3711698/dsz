@@ -39,6 +39,15 @@ page {
   align-items: center;
   margin-bottom: 20rpx;
 }
+.button-type {
+  width:100%;
+  background-color: #fff;
+  margin: 0 auto;
+  height: 150rpx;
+  display: flex;
+  align-items: center;
+  
+}
 .favlist-type .icon {
   width: 90rpx;
   height: 100%;

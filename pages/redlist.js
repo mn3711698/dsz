@@ -7,10 +7,12 @@ var app = getApp();
 exports.default = Page({
   data: {
     NAV_HEIGHT: wx.STATUS_BAR_HEIGHT + wx.DEFAULT_HEADER_HEIGHT + 'px',
-    favNone: false
+    favNone: false,
+    loginMask: false
   },
   onLoad: function onLoad() {
     var that = this;
+   
     var token = wx.getStorageSync('__appUserInfo').token;
     wx.request({
       url: app.globalData.sUrl +'&part=see_wzlist',
@@ -37,6 +39,10 @@ exports.default = Page({
     wx.navigateTo({
       url: '/pages/index?tid=' + id + '&type=' + 0
     });
+  },
+  checkin: function (e) {
+    //console.log(e, '-------------')
+    app.vPush.addFormId(e);
   },
   navigateBack: function navigateBack() {
     wx.navigateBack();

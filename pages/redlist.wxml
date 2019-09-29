@@ -24,15 +24,18 @@
       </view>
       <view class="favlist-list">
         <block wx:for-items="{{seelist[item]}}" wx:key="id">
-          
           <view  class="favlist-type" bindtap="getCenterTap" data-id="{{item.id}}" data-type="{{item.type}}">
-            <view class="icon">
-              <image src="../images/views.png" />
-            </view>
-            <view class="type-contents-box">
-              <view class="type-title"><text>{{item.time}}</text></view>
-              <view class="type-author">{{item.title}}</view>
-            </view>
+            <form report-submit bindsubmit='checkin' style="width:100%;">
+              <button form-type='submit' style="" class="button-type">
+                <view class="icon">
+                  <image src="../images/views.png" />
+                </view>
+                <view class="type-contents-box">
+                  <view class="type-title"><text>{{item.time}}</text></view>
+                  <view class="type-author">{{item.title}}</view>
+                </view>
+             </button>
+            </form>
           </view>
         </block>
       </view>
