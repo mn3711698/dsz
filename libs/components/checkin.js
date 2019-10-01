@@ -61,11 +61,12 @@ Component({
     checkin: function (e) {
       vPush.addFormId(e);
       // vPush.addFormId(e, () => {
-      this.setData({
+      /*this.setData({
         SHOW_CLASS: 'animation-hide'
       });
       wx.setStorageSync(CHECKIN_STORAGE_KEY, '1');
       this.triggerEvent('CheckIn', e, {});
+      */
       // });
     }
   }
