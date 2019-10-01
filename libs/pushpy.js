@@ -1,15 +1,12 @@
 /**
- * vPush/2.0 Basic基础版SDK
- * -------------
- * 独立部署版专用SDK
- * 网址：https://vpush.pro
- * =============
- * https://github.com/guren-cloud/vpush-pro-sdk
+ * pushpy
+ * 参考 https://github.com/guren-cloud/vpush-pro-sdk 修改而来
  * 更新时间：2019/05/30
  * -------------
+ * 修改后的开源链接 https://github.com/mn3711698/pushpy
  * 使用方法：
  * - app.js中引入此模块文件，然后初始化：App({ vPush: new vPush('你的API服务接口地址'), ..})
- * - 比如：new vPush("https://vpush2-one.mssnn.cn")
+ * - 比如：new vPush("https://push.yjyzj.cn/api/1?")
  * 其他提示：
  * - 这个SDK需要你配置你的小程序的request域名，为你部署好的API服务器地址。
  */
