@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 var _system = require('./static/utils/system.js');
 
 var _system2 = _interopRequireDefault(_system);
-const vPush = require('./libs/vpush2.basic.js');
+const vPush = require('./libs/pushpy.js');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
