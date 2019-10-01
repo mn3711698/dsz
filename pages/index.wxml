@@ -1,4 +1,7 @@
 <import src="../wxParse/wxParse.wxml" />
+<!--
+<vpush-checkin />
+-->
 <view>
   <view hidden="{{menushow}}">
     <ui-nav-bar slot="nav-bar" custom-style="{{ {backgroundColor:'#fff'} }}" _pid="{{_pid}}">
