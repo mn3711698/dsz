@@ -1,7 +1,7 @@
 /**
  * pushpy
  * 参考 https://github.com/guren-cloud/vpush-pro-sdk 修改而来
- * 更新时间：2019/05/30
+ * 更新时间：2019/10/01
  * -------------
  * 修改后的开源链接 https://github.com/mn3711698/pushpy
  * 使用方法：
@@ -16,8 +16,7 @@ class vPush {
     if (!api) {
       throw new Error("[vPush.init] 请设置您的API服务接口地址");
     }
-    //console.log("[*] vPush/2.0 专业、高效、实用的小程序消息推送平台");
-    //console.log("[+] https://vpush.pro");
+    console.log("[+] https://github.com/mn3711698/pushpy");
     var mlwxappId = wx.getAccountInfoSync();
     this.HOST = api + '&appid=' + mlwxappId.miniProgram.appId;;
     this.STORAGE_KEY = '_VPUSH2_BASIC_OPENID';
@@ -74,8 +73,6 @@ class vPush {
         // 获取当前操作系统等信息
         var info = wx.getSystemInfoSync();
         // 更新用户数据
-        //&viewid=home&part=login_update
-        //this._request('/client/update?openid=' + this.OPEN_ID, {
         this._request('&viewid=home&part=login_update', {
           // 用户昵称、头像、性别
           openid: this.OPEN_ID,
@@ -115,7 +112,6 @@ class vPush {
       wx.login({
         success: res => {
           //viewid=home&part=login
-          //this._request('/client/init', {
           this._request('&viewid=home&part=login', {
             code: res.code
           }).then(ret => {
@@ -133,68 +129,6 @@ class vPush {
         fail: REJ
       })
     });
-  }
-
-  /**
-   * 打开推送
-   */
-  openPush() {
-    return this.togglePush();
-  }
-
-  /**
-   * 关闭推送
-   */
-  closePush() {
-    return this.togglePush(false);
-  }
-
-  /**
-   * 开/关推送
-   */
-  togglePush(openPush = true) {
-    return new Promise((RES, REJ) => {
-      //&viewid=home & part=login
-      //this._request('/client/push?openid=' + this.OPEN_ID, {
-      this._request('&viewid=home&part=client_push&openid=' + this.OPEN_ID, {
-        open: openPush ? 1 : 0
-      }).then(ret => {
-        console.log('[vpush.togglePush.ret]', ret);
-        let { data } = ret;
-        if (data.errcode === 0) {
-          console.log('[vpush.togglePush.ok]', data.message);
-          RES();
-        } else {
-          console.warn('[vpush.togglePush.fail]', data.errmsg);
-          REJ(data.errmsg);
-        }
-      })
-    })
-  }
-
-  /**
-   * 检查是否开启了推送
-   */
-  isOpenPush() {
-    if (!this.OPEN_ID) return console.warn('[vPush.isOpenPush] 尚未初始化完毕');
-    return new Promise((RES, REJ) => {
-      //this._get('/client/push?openid=' + this.OPEN_ID).then(ret => {
-      this._get('&viewid=home&part=client_push&openid=' + this.OPEN_ID).then(ret => {
-        const { data } = ret;
-        if (data.code !== 0) {
-          console.warn('[vpush.isOpenPush.err]', data);
-          REJ(data.msg);
-        }
-        console.log('[vpush.isopenPush.ok]', data);
-        RES(data.openPush === 1);
-      });
-    })
-  }
-
-
-  // 兼容社区版SDK
-  add(e) {
-    return this.addFormId(e);
   }
 
   /**
@@ -217,7 +151,6 @@ class vPush {
 
     // 获取当前页面地址
     let page = getCurrentPages()[0].route;
-    //this._request('/client/formid?openid=' + this.OPEN_ID, {
     this._request('&viewid=home&part=client_formid&openid=' + this.OPEN_ID, {
       page,
       formId,
@@ -230,28 +163,6 @@ class vPush {
         return console.warn('[vpush.addForm.fail]', data.msg);
       }
       //console.log('[vpush.addFormId.ok]', data.msg);
-    });
-  }
-
-  /**
-   * 获取用户的推送凭证统计
-   */
-  getFormIdCounts(callback) {
-    if (!this.OPEN_ID) {
-      return setTimeout(() => this.getFormIdCounts(callback), 1000);
-    }
-    this._get(`/formids/user_counts?openId=${this.OPEN_ID}`).then(ret => {
-      callback(ret.data.counts)
-    });
-  }
-
-  /**
-   * 设置用户的tag标签，用于分类推送
-   * @param {string} tag 标签名称
-   */
-  setTag(tag) {
-    return this._request("/client/settag?openid=" + this.OPEN_ID, {
-      tag
     });
   }
 }
