@@ -436,10 +436,10 @@ exports.default = Page({
                       ctx.drawImage('../images/logo_share.png', 20, 30, 80, 80);
                       ctx.setFillStyle('#333333');
                       ctx.setFontSize(18);
-                      ctx.fillText('道术斋', 108, 63);
+                      ctx.fillText('简道斋', 108, 63);
                       ctx.setFillStyle('#999999');
                       ctx.setFontSize(14);
-                      ctx.fillText('道之本源，术之方法', 108, 92);
+                      ctx.fillText('大道至简', 108, 92);
                       ctx.strokeStyle = "#eee";
                       ctx.lineWidth = 0.5;
                       ctx.beginPath();
@@ -569,7 +569,7 @@ exports.default = Page({
       
     } else {
       return {
-        title: '道术斋 - 道之本源，术之方法',
+        title: '道简斋 - 大道至简',
         path: '/pages/index'
       };
     }
@@ -666,6 +666,7 @@ exports.default = Page({
             encryptedData: encryptedData
           },
           success: function success(res) {
+            //console.log(res,'rrrrrrrrrr')
             if (res.data.code != 0) {
               wx.showConfirm({
                 content: res.data.msg,
